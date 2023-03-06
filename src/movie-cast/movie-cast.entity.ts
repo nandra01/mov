@@ -1,5 +1,5 @@
-import { Cast } from 'src/cast/cast.entity';
-import { Movies } from 'src/movies/movies.entity';
+import { Cast } from '../cast/cast.entity';
+import { Movies } from '../movies/movies.entity';
 import {
   BaseEntity,
   Column,

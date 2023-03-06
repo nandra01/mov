@@ -1,4 +1,4 @@
-import { MovieCast } from 'src/movie-cast/movie-cast.entity';
+import { MovieCast } from '../movie-cast/movie-cast.entity';
 import {
   BaseEntity,
   Column,
