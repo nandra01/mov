@@ -15,12 +15,9 @@ export const dataSourceOptions: DataSourceOptions = {
   password: config.DB_PW,
   database: config.DB_NAME,
   logging: true,
-  synchronize: false,
-  migrationsRun: true,
-  entities: [__dirname + '/**/*.entity.{js,ts}'],
-  migrations: [join(__dirname + '/../migrations/*{.ts,.js}')],
+  entities: [__dirname + '/../**/*.entity.{js,ts}'],
+  migrations: [join(__dirname, '..', 'migrations/*.{ts,js}')],
 };
-
 // console.log({
 //   type: 'mysql',
 //   host: config.DB_HOST,
