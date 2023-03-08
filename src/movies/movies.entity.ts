@@ -12,7 +12,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Movies {
+export class Movies extends BaseEntity {
   @PrimaryGeneratedColumn('increment', { type: 'bigint' })
   id: number;
 

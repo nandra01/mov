@@ -7,6 +7,7 @@ import { MovieCastModule } from 'src/movie-cast/movie-cast.module';
 import { dataSourceOptions } from 'src/config/typeorm-config';
 import { Movies } from './movies.entity';
 import { MovieCast } from 'src/movie-cast/movie-cast.entity';
+import { MoviesRepository } from './movie.repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Movies, MovieCast])],

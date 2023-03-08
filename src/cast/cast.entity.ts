@@ -13,7 +13,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Cast {
+export class Cast  extends BaseEntity  {
   @PrimaryGeneratedColumn('increment', { type: 'bigint' })
   id: number;
 
@@ -34,6 +34,9 @@ export class Cast {
 
   @Column({ name: 'city', type: 'varchar', nullable: true })
   city: string;
+  
+  @Column({ name: 'region', length: 100, nullable: true })
+  region: string
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

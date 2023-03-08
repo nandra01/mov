@@ -15,7 +15,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class MovieCast {
+export class MovieCast  extends BaseEntity  {
   @PrimaryGeneratedColumn('increment', { type: 'bigint' })
   id: number;
 

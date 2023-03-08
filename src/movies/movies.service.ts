@@ -8,6 +8,7 @@ import { QRCode } from 'qrcode';
 import { CreateQrCodeDTO } from './dto/create-qr-code.dto';
 import { Repository } from 'typeorm';
 import dataSource from 'src/config/typeorm-migration';
+import { MoviesRepository } from './movie.repository';
 
 @Injectable()
 export class MoviesService {
