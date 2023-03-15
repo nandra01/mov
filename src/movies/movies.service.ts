@@ -53,7 +53,8 @@ export class MoviesService {
     const result = await this.movieRepository.find();
     console.log("🚀 ~ file: movies.service.ts:54 ~ MoviesService ~ getMovie ~ result:", result)
     
-
+    console.log('tessss');
+    
     return result;
   }
 
