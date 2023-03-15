@@ -68,6 +68,8 @@ export class MoviesService {
       '🚀 ~ file: movies.service.ts:59 ~ MoviesService ~ getMovieById ~ res:',
       res,
     );
+    console.log('inibaru');
+    
     return res;
   }
 
