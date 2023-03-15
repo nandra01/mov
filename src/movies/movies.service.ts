@@ -51,6 +51,8 @@ export class MoviesService {
 
   async getMovie(): Promise<Movies[]> {
     const result = await this.movieRepository.find();
+    console.log("🚀 ~ file: movies.service.ts:54 ~ MoviesService ~ getMovie ~ result:", result)
+    
 
     return result;
   }
