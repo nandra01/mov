@@ -14,8 +14,9 @@ export const dataSourceOptions: DataSourceOptions = {
   username: config.DB_USERNAME,
   password: config.DB_PW,
   database: config.DB_NAME,
-  logging: true,
-  synchronize: false,
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
-  migrations: [join(__dirname, '..migrations/*.{ts,js}')]
+  synchronize: false,
+  logging: true,
+  migrationsRun: true,
+  migrations: [join(__dirname, '..', 'migrations/*.{ts,js}')],
 };

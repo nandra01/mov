@@ -10,6 +10,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { StatusMovie } from './movie.enum';
 
 @Entity()
 export class Movies extends BaseEntity {
@@ -33,6 +34,9 @@ export class Movies extends BaseEntity {
 
   @Column({ name: 'city', type: 'varchar', length: 50, nullable: true })
   city: string;
+
+  @Column({ type: 'enum', name: 'status_movie', enum: StatusMovie, default: null })
+  statusMovie: StatusMovie;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

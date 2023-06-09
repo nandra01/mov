@@ -80,6 +80,7 @@ export class MoviesService {
     movie.language = movieDto.language;
     movie.status = movieDto.status;
     movie.rating = movieDto.rating;
+    movie.statusMovie = movieDto.statusMovie;
 
     if (movie.rating > 5) {
       throw new HttpException(
