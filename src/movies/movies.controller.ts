@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Inject,
   Param,
   ParseIntPipe,
   Post,
@@ -20,9 +21,11 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CreateMovieCastDto } from 'src/movie-cast/dto/create-movie-cast.dto';
 import { MovieCastService } from 'src/movie-cast/movie-cast.service';
+import { TransformInterceptor } from 'src/interceptors/transform.interceptor';
 
 @ApiTags('movies')
 @Controller('api/v1/watch')
+@UseInterceptors(new TransformInterceptor())
 export class MoviesController {
   constructor(
     private readonly movieService: MoviesService,
@@ -52,15 +55,15 @@ export class MoviesController {
   async createMovie(@Body() movieDto: CreateMoviesDto): Promise<Movies> {
     const movie = await this.movieService.createMovie(movieDto);
 
-    if (movieDto.MovieCast) {
-      const createMovieCastDTO: CreateMovieCastDto[] = JSON.parse(
-        '[' + movieDto.MovieCast + ']',
-      );
-      createMovieCastDTO.forEach((data) => {
-        Object.assign(data, { movieId: movie.id });
-      });
-      await this.movieCastService.create(createMovieCastDTO);
-    }
+    // if (movieDto.MovieCast) {
+    //   const createMovieCastDTO: CreateMovieCastDto[] = JSON.parse(
+    //     '[' + movieDto.MovieCast + ']',
+    //   );
+    //   createMovieCastDTO.forEach((data) => {
+    //     Object.assign(data, { movieId: movie.id });
+    //   });
+    //   await this.movieCastService.create(createMovieCastDTO);
+    // }
 
     return movie;
   }
@@ -77,16 +80,19 @@ export class MoviesController {
     return await this.movieService.getMovieById(id);
   }
 
-  @Put()
+  @Put('/:id')
+  @ApiParam({ name: 'id' })
+  @ApiQuery({ name: 'publishDraft', required: false })
   @UseInterceptors(FileInterceptor('file'))
   @ApiConsumes('multipart/form-data')
   update(
     @Param('id') id: number,
     @Body() updateMovieDTO: UpdateMovieDto,
+    @Query('publishDraft') publishDraft?: boolean
   ): Promise<Movies> {
     //const movieCastCheck =
 
-    return this.movieService.update(id, updateMovieDTO);
+    return this.movieService.update(id, updateMovieDTO, publishDraft);
   }
 
   @Delete('/:id')

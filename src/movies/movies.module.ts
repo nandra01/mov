@@ -8,6 +8,7 @@ import { dataSourceOptions } from 'src/config/typeorm-config';
 import { Movies } from './movies.entity';
 import { MovieCast } from 'src/movie-cast/movie-cast.entity';
 import { MoviesRepository } from './movie.repository';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Movies, MovieCast])],

@@ -3,18 +3,19 @@ import { ApiProperty } from "@nestjs/swagger";
 
 @Injectable()
 export class UpdateMovieDto {
-  @ApiProperty({ required: true })
-  id: number;
-
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: false })
   name: string;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: false })
   language: string;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: false })
   status: string;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: false })
   rating: number;
+
+
+  @ApiProperty({ required: false })
+  updateStatus: string;
 }

@@ -35,8 +35,14 @@ export class Movies extends BaseEntity {
   @Column({ name: 'city', type: 'varchar', length: 50, nullable: true })
   city: string;
 
-  @Column({ type: 'enum', name: 'status_movie', enum: StatusMovie, default: null })
-  statusMovie: StatusMovie;
+  // @Column({ type: 'enum', name: 'status_movie', enum: StatusMovie, default: null })
+  // statusMovie: StatusMovie;
+
+  @Column({type: 'varchar', name: 'update_status', length: 50, nullable: true})
+  updateStatus: string;
+
+  @Column({type: 'bigint', name: 'parent_id', default: null})
+  parentId: number;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

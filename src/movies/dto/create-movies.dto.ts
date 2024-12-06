@@ -5,23 +5,26 @@ import { StatusMovie } from "../movie.enum";
 
 @Injectable()
 export class CreateMoviesDto {
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: false })
   name: string;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: false })
   language: string;
 
-  @ApiProperty({ required: true })
+  @ApiProperty({ required: false })
   status: string;
 
-  @ApiProperty({description:'rate cannot be greater than 5' ,required: true })
+  @ApiProperty({description:'rate cannot be greater than 5' ,required: false })
   rating: number;
 
   @ApiProperty({ enum: StatusMovie, enumName: 'statusMovie'})
   statusMovie: StatusMovie
 
-  @ApiProperty({
-  type: [CreateMovieCastDto],
-  })
-  MovieCast:[CreateMovieCastDto];
+  @ApiProperty({description:'posible values "Published" | "Draft" ' ,required: false })
+  updateStatus: string;
+
+  // @ApiProperty({
+  // type: [CreateMovieCastDto],
+  // })
+  // MovieCast:[CreateMovieCastDto];
 }

@@ -2,19 +2,23 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import * as basicAuth from 'express-basic-auth';
+import * as auth from 'basic-auth';
 declare const module: any;
+import * as dotenv from 'dotenv';
+import * as fs from 'fs';
+import { TransformInterceptor } from './interceptors/transform.interceptor';
 
-const SWAGGER_ENVS = ['local', 'development', 'production'];
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
- console.log(SWAGGER_ENVS.includes(process.env.NODE_ENV) + '🥵');
-  
-   if (SWAGGER_ENVS.includes(process.env.NODE_ENV)) {
+  const nodeEnv = process.env.NODE_ENV || '';
+
+const configEnv = dotenv.parse(fs.readFileSync(`${nodeEnv}.env`));
+   if (configEnv) {
     app.use(['/api/v1/movie', '/api/v1/movie-json'], basicAuth({
       challenge: true,
       users: {
-        [process.env.SW_USER]: process.env.SW_PASSWORD,
+        [configEnv.SW_USER]: configEnv.SW_PASSWORD,
       }
     }))
  }
